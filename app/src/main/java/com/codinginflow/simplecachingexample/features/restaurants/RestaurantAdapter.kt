@@ -9,7 +9,8 @@ import com.bumptech.glide.Glide
 import com.codinginflow.simplecachingexample.data.Restaurant
 import com.codinginflow.simplecachingexample.databinding.RestaurantItemBinding
 
-class RestaurantAdapter : ListAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(RestaurantComparator()) {
+class RestaurantAdapter :
+    ListAdapter<Restaurant, RestaurantAdapter.RestaurantViewHolder>(RestaurantComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestaurantViewHolder {
         val binding =
@@ -27,17 +28,17 @@ class RestaurantAdapter : ListAdapter<Restaurant, RestaurantAdapter.RestaurantVi
     class RestaurantViewHolder(private val binding: RestaurantItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(restaurant: Restaurant) {
-                binding.apply {
-                    Glide.with(itemView)
-                        .load(restaurant.logo)
-                        .into(imageViewLogo)
+        fun bind(restaurant: Restaurant) {
+            binding.apply {
+                Glide.with(itemView)
+                    .load(restaurant.logo)
+                    .into(imageViewLogo)
 
-                    textViewName.text = restaurant.name
-                    textViewType.text = restaurant.type
-                    textViewAddress.text = restaurant.address
-                }
+                textViewName.text = restaurant.name
+                textViewType.text = restaurant.type
+                textViewAddress.text = restaurant.address
             }
+        }
     }
 
     class RestaurantComparator : DiffUtil.ItemCallback<Restaurant>() {
